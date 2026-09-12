@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cubai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_CHAT_MODEL
+        value: gpt-5
+      - key: OPENAI_IMAGE_MODEL
+        value: gpt-image-1

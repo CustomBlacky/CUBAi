@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tg" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CUBAi — AI барои ҳама</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">C</span><div><b>CUBAi</b><small>AI Studio</small></div></div>
+    <button class="new" onclick="newChat()">＋ Чати нав</button>
+    <nav>
+      <button class="active" onclick="showTab('chat',this)">💬 Чат</button>
+      <button onclick="showTab('render',this)">✨ AI Render</button>
+    </nav>
+    <div class="side-note">Бо забони тоҷикӣ сохта шудааст 🇹🇯</div>
+  </aside>
+
+  <main>
+    <header><div><h1 id="title">CUBAi</h1><p id="subtitle">Ёвари зеҳни сунъии шумо</p></div><span class="status">● Online</span></header>
+
+    <section id="chat" class="tab">
+      <div id="messages" class="messages">
+        <div class="welcome">
+          <div class="big-logo">C</div>
+          <h2>Салом! Ман CUBAi ҳастам 👋</h2>
+          <p>Саволатонро ба тоҷикӣ нависед. Ман кӯмак мекунам.</p>
+          <div class="chips">
+            <button onclick="quick('Барои ман нақшаи омӯзишӣ соз')">📚 Нақшаи омӯзишӣ</button>
+            <button onclick="quick('Ин матнро ба тоҷикӣ равонтар навис')">✍️ Навиштан</button>
+            <button onclick="quick('Идеяҳо барои як лоиҳаи вебӣ пешниҳод кун')">💡 Идея</button>
+          </div>
+        </div>
+      </div>
+      <form class="composer" onsubmit="sendChat(event)">
+        <textarea id="prompt" placeholder="Паёми худро нависед..." rows="1"></textarea>
+        <button class="send" type="submit">➤</button>
+      </form>
+      <p class="hint">CUBAi метавонад хато кунад — маълумоти муҳимро санҷед.</p>
+    </section>
+
+    <section id="render" class="tab hidden">
+      <div class="render-box">
+        <h2>✨ AI Render</h2>
+        <p>Тасвирро бо сухан тасвир кунед.</p>
+        <textarea id="imagePrompt" placeholder="Мисол: шаҳри Душанбе дар оянда, услуби кинематографӣ..."></textarea>
+        <button class="generate" onclick="generateImage()">Сохтани тасвир</button>
+        <div id="imageResult" class="image-result"></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

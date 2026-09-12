@@ -1,0 +1,4 @@
+const form=document.getElementById("form"),input=document.getElementById("input"),chat=document.getElementById("chat");
+function addMessage(text,who){const el=document.createElement("div");el.className="msg "+who;el.textContent=text;chat.appendChild(el);chat.scrollTop=chat.scrollHeight;return el}
+form.addEventListener("submit",async e=>{e.preventDefault();const message=input.value.trim();if(!message)return;document.querySelector(".welcome")?.remove();addMessage(message,"user");input.value="";const thinking=addMessage("Думаю…","ai");try{const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message})});const data=await res.json();thinking.textContent=res.ok?(data.reply||"Ответ пустой."):(data.error||"Произошла ошибка.")}catch(err){thinking.textContent="Ошибка соединения с сервером."}});
+input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
